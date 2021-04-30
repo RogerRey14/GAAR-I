@@ -17,5 +17,10 @@ class colors:
 
 
 class const:
-    ROBOT_INITIAL_FK_POSITION = [180,120,65,45,90]
-    PRINT_PREFIX = 'GARRI says: '
+    ROBOT_TOTAL_AXIS = 5
+    ROBOT_INITIAL_ANGLES = [180,120,65,45,90]
+    GAARI_SAYS = 'GAARI says: '
+    ORDEN_VEN = 1
+    ORDEN_ABRE = 2
+    ORDEN_AGARRA = 3
+    ORDEN_DEVUELVE = 4
