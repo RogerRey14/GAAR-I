@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # encoding: utf-8
 """
 Constants.py
@@ -18,7 +17,7 @@ class colors:
 
 class const:
     ROBOT_TOTAL_AXIS = 5
-    ROBOT_INITIAL_ANGLES = [180,120,65,45,90]
+    ROBOT_INITIAL_ANGLES = [0,0,0,0,0]
     GAARI_SAYS = 'GAARI says: '
     ORDEN_VEN = 1
     ORDEN_ABRE = 2

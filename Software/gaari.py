@@ -14,6 +14,7 @@ from IK import inverseKinematic
 from servoPosition import servoPosition
 from constants import const, colors
 from utils import echo
+from simulator import simulator
 
 #  las ordenes disponibles
 ordenes = [
@@ -35,11 +36,15 @@ secuencias_permitidas = [
     { const.ORDEN_AGARRA : [const.ORDEN_DEVUELVE] },
 ]
 
+sim = simulator()
+
 # Esta funcion es la que se encarga de recibir el codigo de la orden
 # y ejecutar la funcion o el workflow pertinente.
 def procesar_orden(codigo):
     if codigo == const.ORDEN_VEN: # ven
         # llamada a una funcion del fichero IK...
+        print(sim.getDummyPosition())
+        sim.setPose(servoPosition([90, 90, 90, 10, 10]).getAll("rad"))
         echo(const.GAARI_SAYS + "Gaari viene", color=colors.OKGREEN)
         pass
     elif codigo == const.ORDEN_ABRE: # abre
