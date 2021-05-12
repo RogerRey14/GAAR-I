@@ -23,3 +23,15 @@ class const:
     ORDEN_ABRE = 2
     ORDEN_AGARRA = 3
     ORDEN_DEVUELVE = 4
+    #  las ordenes disponibles
+    ORDENES = [
+        { "label": "ven",                               "codigo": ORDEN_VEN },
+        { "label": "abre",                              "codigo": ORDEN_ABRE },
+        { "label": "agarra",                            "codigo": ORDEN_AGARRA },
+        { "label": "devuelve",                          "codigo": ORDEN_DEVUELVE },
+
+        { "label": "bisturí",                           "codigo": 20 },
+        { "label": "tijeras",                           "codigo": 21 },
+        { "label": "jeringuilla",                       "codigo": 22 },
+        { "label": "pinza",                             "codigo": 23 },
+    ]

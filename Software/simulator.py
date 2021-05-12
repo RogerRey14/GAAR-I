@@ -28,11 +28,12 @@ class simulator:
     # Conexion al soppelia sim
     def connect(self, port):
         sim.simxFinish(-1)
-        clientID = sim.simxStart('127.0.0.1', port, True, True, 2000, 5) 
-        if clientID == 0: 
+        clientID = sim.simxStart('127.0.0.1', port, True, True, 2000, 5)
+        if clientID == 0:
             print("conectado a", port)
-        else: 
-            fatalError("no se pudo conectar al simulador!")
+        else:
+            pass
+            # fatalError("no se pudo conectar al simulador!")
         return clientID
 
     # Obtener la posición del Dummy

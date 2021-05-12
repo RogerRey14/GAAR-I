@@ -4,7 +4,7 @@ GAAR-I: Generic Arm Assist Robot - Intelligent
 """
 
 __author__ = "GAAR-I"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __license__ = "MIT"
 
 import re, sys
@@ -15,28 +15,12 @@ from servoPosition import servoPosition
 from constants import const, colors
 from utils import echo
 from simulator import simulator
+from audio import VoiceRecognition
+import speech_recognition as sr
 
-#  las ordenes disponibles
-ordenes = [
-    { "label": "ven",                               "codigo": const.ORDEN_VEN },
-    { "label": "abre",                              "codigo": const.ORDEN_ABRE },
-    { "label": "agarra",                            "codigo": const.ORDEN_AGARRA },
-    { "label": "devuelve",                          "codigo": const.ORDEN_DEVUELVE },
-
-    { "label": "bisturi",                           "codigo": 20 },
-    { "label": "abrazadera de diseccion recta",     "codigo": 21 },
-    { "label": "tijeras mayo curva",                "codigo": 22 },
-    { "label": "tijeras de mayo recta",             "codigo": 23 },
-]
-
-# lista de las ordenes permitidas dependiendo del estado actual del gaari
-secuencias_permitidas = [
-    { const.ORDEN_VEN : [const.ORDEN_ABRE, const.ORDEN_AGARRA ] },
-    { const.ORDEN_ABRE : [const.ORDEN_AGARRA ] },
-    { const.ORDEN_AGARRA : [const.ORDEN_DEVUELVE] },
-]
 
 sim = simulator()
+voice = VoiceRecognition()
 
 # Esta funcion es la que se encarga de recibir el codigo de la orden
 # y ejecutar la funcion o el workflow pertinente.
@@ -64,69 +48,29 @@ def procesar_orden(codigo):
         echo(const.GAARI_SAYS + "Gaari procesa el objecto", color=colors.OKGREEN)
         pass
 
+    return True
+
 
 # Esta funcion es la que seejecuta en bucle y es la encargada de
 # interpretar las ordenes y delegar las tareas a diferentes modulos
 # del programa.
 async def intrpretar_comandos(loop):
-    echo("Escuchando...", color=colors.OKGREEN)
+    echo("Escuchando...", color=colors.OKCYAN)
 
-    orden_actual = None
-    cmd_text = ""
+    code = None
 
-    while True:
-        # por el momento leer la orden por la consola
-        cmd_input = input("Escribe la orden:\n")
+    with sr.Microphone() as source:
+        while True:
 
-        # considerar la entrada si la orden empieza con la palabra "gaari"
-        if re.search("^gaari", cmd_input):
-            orden = cmd_input.split()
+            code = voice.recognize(source)
 
-            # comprobamos que la orden tiene almenos dos palabras
-            if len(orden) > 1:
-                # solo nos interesa la segunda palabra
-                orden = orden[1]
-
-            # comprobar si la orden existe
-            orden_existe = False
-            orden_solicitada = { "label": None, "codigo": None }
-            for _orden in ordenes:
-                if orden == _orden["label"]:
-                    orden_existe = True
-                    orden_solicitada = _orden
-
-
-            # Comprobar si la secuencia del orden es posible
-            if orden_existe:
-                orden_valida = False
-
-                if orden_actual != None:
-                    for seq in secuencias_permitidas:
-                        ordenes_posibles = seq.get(orden_actual)
-                        if ordenes_posibles != None and len(ordenes_posibles) > 0:
-                            for _ord in ordenes_posibles:
-                                if _ord == orden_solicitada["codigo"]:
-                                    orden_actual = orden_solicitada["codigo"]
-                                    orden_valida = True
-                                    break
-                else:
-                    # si el la primera orden, no imponemos ninguna restriccion
-                    orden_actual = orden_solicitada["codigo"]
-                    orden_valida = True
-
-
-                if orden_valida:
-                    # llamar la función para procesar la orden
-                    procesar_orden(orden_solicitada["codigo"])
-                else:
-                    echo(const.GAARI_SAYS + "La orden no es valida.", color=colors.WARNING)
-
+            if code != "APAGAR":
+                if code != "REPITE" and code != None:
+                    procesar_orden(const.ORDEN_VEN)
+                    # procesar la orden
             else:
-                echo(const.GAARI_SAYS + "No te he entendido, repite porfavor.", color=colors.FAIL)
-
-        # parar la ejecución
-        elif cmd_input == 'exit' or cmd_input == 'bye':
-            return
+                # apagar el robot
+                return
 
 
 def robot_idle():
