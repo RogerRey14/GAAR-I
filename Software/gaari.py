@@ -10,43 +10,40 @@ __license__ = "MIT"
 import re, sys
 import argparse
 import asyncio
-from IK import inverseKinematic
+from IK import IK
 from servoPosition import servoPosition
 from constants import const, colors
 from utils import echo
 from simulator import simulator
 from audio import VoiceRecognition
+from sequencer import sequencer
 import speech_recognition as sr
+
+import time
 
 
 sim = simulator()
 voice = VoiceRecognition()
+seq = sequencer(sim)
 
 # Esta funcion es la que se encarga de recibir el codigo de la orden
 # y ejecutar la funcion o el workflow pertinente.
 def procesar_orden(codigo):
     if codigo == const.ORDEN_VEN: # ven
-        # llamada a una funcion del fichero IK...
-        print(sim.getDummyPosition())
-        sim.setPose(servoPosition([90, 90, 90, 10, 10]).getAll("rad"))
+        seq.ven()
         echo(const.GAARI_SAYS + "Gaari viene", color=colors.OKGREEN)
-        pass
     elif codigo == const.ORDEN_ABRE: # abre
-        # llamada a una funcion
+        seq.abre()
         echo(const.GAARI_SAYS + "Gaari está abriendo", color=colors.OKGREEN)
-        pass
     elif codigo == const.ORDEN_AGARRA: # agarra
-        # llamada a una funcion
+        seq.agarra()
         echo(const.GAARI_SAYS + "Gaari agarra", color=colors.OKGREEN)
-        pass
     elif codigo == const.ORDEN_DEVUELVE: # devuelve
         # llamada a una funcion
         echo(const.GAARI_SAYS + "Gaari va a devolver", color=colors.OKGREEN)
-        pass
     else:
         # llamada a una funcion
         echo(const.GAARI_SAYS + "Gaari procesa el objecto", color=colors.OKGREEN)
-        pass
 
     return True
 
@@ -66,7 +63,7 @@ async def intrpretar_comandos(loop):
 
             if code != "APAGAR":
                 if code != "REPITE" and code != None:
-                    procesar_orden(const.ORDEN_VEN)
+                    procesar_orden(code)
                     # procesar la orden
             else:
                 # apagar el robot
@@ -74,8 +71,7 @@ async def intrpretar_comandos(loop):
 
 
 def robot_idle():
-    # posicion de reposo
-    initial_position = servoPosition(const.ROBOT_INITIAL_ANGLES)
+    sim.resting_position()
 
 
 def init():
