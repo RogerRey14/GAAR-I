@@ -33,6 +33,8 @@ class simulator:
     cuboid = None
     camara = None
 
+    object_positions = dict()
+
     def __init__(self):
         self.clientID = self.connect(self.port)
         for i in range(5):
@@ -56,6 +58,12 @@ class simulator:
         retCode, self.cuboid0 = sim.simxGetObjectHandle(self.clientID, 'Cuboid0', simConst.simx_opmode_blocking)
         retCode, self.cuboid = sim.simxGetObjectHandle(self.clientID,'Cuboid',simConst.simx_opmode_blocking)
 
+
+        # Inicializar el diccionario con las posiciones de los objetos
+        self.object_positions[20] = [0, 0, 0, self.bisturi]
+        self.object_positions[21] = [0, 0, 0, self.tijeras]
+        self.object_positions[22] = [0, 0, 0, self.jeringuilla]
+        self.object_positions[23] = [0, 0, 0, self.pinza]
 
         print("Simulator incializado")
 
@@ -86,14 +94,14 @@ class simulator:
         return returnCode != -1
 
     # Fijar una lista de angulos al robot entero
-    def setPose(self, angles, sleep = False):
+    def setPose(self, angles, sleep = True):
         if len(angles) > len(self.servos):
             fatalError("numero de angulos no coinciden con el numero de servos")
 
         for i in range(len(self.servos)):
             returnCode = sim.simxSetJointTargetPosition(self.clientID, self.servos[i], angles[i], simConst.simx_opmode_blocking)
             if sleep != False:
-                time.sleep(sleep) # 100ms
+                time.sleep(0.2) # 100ms
 
         return returnCode != -1
 

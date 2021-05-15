@@ -34,7 +34,7 @@ class servoPosition(object):
             if ptype == "rad":
                 return [ pos * (math.pi / 180) for pos in self.posicion ]
 
-    def getAll(self, ptype="deg"):
+    def get(self, ptype="deg"):
         return self.__coversion__(ptype)
 
     # esta funcion en cada llamada devuelve la siguiente pocision de la lista self.posicion

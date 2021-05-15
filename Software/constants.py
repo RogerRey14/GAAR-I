@@ -37,10 +37,5 @@ class const:
         { "label": "jeringuilla",                       "codigo": 22 },
         { "label": "pinza",                             "codigo": 23 },
     ]
-    L4 = 0.955
-    L1 = 0.3
-    L2 = 0.3
-    L3 = 0.26
-
     ZONA_DE_TRABAJO = [-np.pi/8, np.pi/8, np.pi/8, 3*np.pi/4, -np.pi/8]
     ZONA_DE_ENTREGA_RECOGIDA = [-np.pi, np.pi/2, 0, 0, 0]

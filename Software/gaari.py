@@ -42,7 +42,7 @@ def procesar_orden(codigo):
         # llamada a una funcion
         echo(const.GAARI_SAYS + "Gaari va a devolver", color=colors.OKGREEN)
     else:
-        # llamada a una funcion
+        seq.objeto(codigo)
         echo(const.GAARI_SAYS + "Gaari procesa el objecto", color=colors.OKGREEN)
 
     return True
@@ -51,7 +51,7 @@ def procesar_orden(codigo):
 # Esta funcion es la que seejecuta en bucle y es la encargada de
 # interpretar las ordenes y delegar las tareas a diferentes modulos
 # del programa.
-async def intrpretar_comandos(loop):
+async def interpretar_comandos(loop):
     echo("Escuchando...", color=colors.OKCYAN)
 
     code = None
@@ -63,8 +63,8 @@ async def intrpretar_comandos(loop):
 
             if code != "APAGAR":
                 if code != "REPITE" and code != None:
-                    procesar_orden(code)
                     # procesar la orden
+                    procesar_orden(code)
             else:
                 # apagar el robot
                 return
@@ -85,7 +85,7 @@ def init():
     # empezar a escuchar a los comandos de robot
     loop = asyncio.get_event_loop()
     try:
-        loop.run_until_complete(intrpretar_comandos(loop))
+        loop.run_until_complete(interpretar_comandos(loop))
     finally:
         echo("Apagando...")
         loop.close()

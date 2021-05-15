@@ -2,19 +2,24 @@ import servoPosition
 import numpy as np
 import math
 from sympy import *
-from constants import const
-
 
 class IK(object):
 
     def __init__(self):
-        #Medidas
-        self.m = const.L4
-        self.H = const.L1
-        self.b = const.L2
-        self.ab = const.L3
+        pass
 
     def inverse_kinematics(self, x, y, z, cabGrados=90, Axis5=0):
+        #Medidas
+        l1 = 0.955
+        l2 = 0.3
+        l3 = 0.3
+        l4 = 0.26
+        dTotal = 0.0757
+        m = l4
+        H = l1
+        b = l2
+        ab = l3
+
         y -= 0.225
         cabRAD=cabGrados*np.pi/180
         Axis1=math.atan2(y, x)
@@ -22,15 +27,15 @@ class IK(object):
         xprima=M
         yprima=z
 
-        Afx=math.cos(cabRAD)*self.m
+        Afx=math.cos(cabRAD)*m
         B=xprima-Afx
-        Afy=math.sin(cabRAD)*self.m
-        A=yprima+Afy-self.H
+        Afy=math.sin(cabRAD)*m
+        A=yprima+Afy-H
         Hip=math.sqrt(pow(A,2)+pow(B,2))
         alfa=math.atan2(A,B)
-        beta=math.acos((pow(self.b,2)-pow(self.b,2)+pow(Hip,2))/(2*self.b*Hip))
+        beta=math.acos((pow(b,2)-pow(ab,2)+pow(Hip,2))/(2*b*Hip))
         Axis2=alfa+beta
-        gamma=math.acos((pow(self.b,2)+pow(self.b,2)-pow(Hip,2))/(2*self.b*self.b))
+        gamma=math.acos((pow(b,2)+pow(ab,2)-pow(Hip,2))/(2*b*ab))
         Axis3=gamma
         Axis4=2*np.pi-cabRAD-Axis2-Axis3
 
@@ -41,5 +46,4 @@ class IK(object):
         j4=Axis5 + j0 #joint5 Se ha dado en grados inicialmente
 
         # devuelve angulo en grados
-        return j0, j1, j2, j3, j4
-
+        return [j0, j1, j2, j3, j4]
