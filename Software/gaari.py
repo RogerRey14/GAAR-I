@@ -28,22 +28,22 @@ seq = sequencer(sim)
 
 # Esta funcion es la que se encarga de recibir el codigo de la orden
 # y ejecutar la funcion o el workflow pertinente.
-def procesar_orden(codigo):
-    if codigo == const.ORDEN_VEN: # ven
+def procesar_orden(orden, objeto):
+    if orden == const.ORDEN_VEN: # ven
         seq.ven()
         echo(const.GAARI_SAYS + "Gaari viene", color=colors.OKGREEN)
-    elif codigo == const.ORDEN_ABRE: # abre
+    elif orden == const.ORDEN_ABRE: # abre
         seq.abre()
         echo(const.GAARI_SAYS + "Gaari está abriendo", color=colors.OKGREEN)
-    elif codigo == const.ORDEN_AGARRA: # agarra
+    elif orden == const.ORDEN_AGARRA: # agarra
         seq.agarra()
         echo(const.GAARI_SAYS + "Gaari agarra", color=colors.OKGREEN)
-    elif codigo == const.ORDEN_DEVUELVE: # devuelve
-        # llamada a una funcion
+    elif orden == const.ORDEN_DEVUELVE: # devuelve
+        seq.devuelve(objeto)
         echo(const.GAARI_SAYS + "Gaari va a devolver", color=colors.OKGREEN)
     else:
-        seq.objeto(codigo)
-        echo(const.GAARI_SAYS + "Gaari procesa el objecto", color=colors.OKGREEN)
+        seq.objeto(orden)
+        echo(const.GAARI_SAYS + "Gaari coje el objecto", color=colors.OKGREEN)
 
     return True
 
@@ -58,13 +58,12 @@ async def interpretar_comandos(loop):
 
     with sr.Microphone() as source:
         while True:
+            orden, objeto = voice.recognize(source)
 
-            code = voice.recognize(source)
-
-            if code != "APAGAR":
-                if code != "REPITE" and code != None:
+            if orden != "APAGAR":
+                if orden != "REPITE" and orden != None:
                     # procesar la orden
-                    procesar_orden(code)
+                    procesar_orden(orden, objeto)
             else:
                 # apagar el robot
                 return

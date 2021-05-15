@@ -28,12 +28,15 @@ class VoiceRecognition(object):
 
         # considerar la entrada si la orden empieza con la palabra "gaari"
         if re.search("^(gary|cari)", cmd_input):
-            orden = cmd_input.split()
+            orden_list = cmd_input.split()
 
             # comprobamos que la orden tiene almenos dos palabras
-            if len(orden) > 1:
+            if len(orden_list) > 1:
                 # solo nos interesa la segunda palabra
-                orden = orden[1]
+                orden = orden_list[1]
+            else:
+                return None, None
+
 
             # comprobar si la orden existe
             orden_existe = False
@@ -44,19 +47,38 @@ class VoiceRecognition(object):
                     orden_existe = True
                     orden_solicitada = _orden
 
+            # comprobar si laorden era "devuelve"
 
-            print(orden_solicitada)
+            objeto_retorno = 0
+            orden_existe_2 = False
+            if orden_existe == True and orden_solicitada["label"] == "devuelve":
+                obj = orden_list[2]
+
+                for _objeto in const.ORDENES:
+                    if obj == _objeto["label"]:
+                        objeto_retorno = _objeto["codigo"]
+                        orden_existe_2 = True
+
+            print(orden_solicitada, objeto_retorno)
 
             # Comprobar si la secuencia del orden es posible
             if orden_existe == True:
-                return orden_solicitada["codigo"]
+                if orden_solicitada["label"] != "devuelve":
+                    return orden_solicitada["codigo"], objeto_retorno
+                elif orden_solicitada["label"] == "devuelve" and orden_existe_2 == True:
+                    return orden_solicitada["codigo"], objeto_retorno
+                else:
+                    echo(const.GAARI_SAYS + "No te he entendido, repite porfavor.", color=colors.FAIL)
+                    return "REPITE", None
             else:
                 echo(const.GAARI_SAYS + "No te he entendido, repite porfavor.", color=colors.FAIL)
-                return "REPITE"
+                return "REPITE", None
 
         # parar la ejecución
         elif cmd_input == 'apágate' or cmd_input == 'adiós':
-            return "APAGAR"
+            return "APAGAR", None
+
+        return None, None
 
 
     def voiceInput(self, source):

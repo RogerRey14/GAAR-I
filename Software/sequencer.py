@@ -2,8 +2,7 @@ import time
 
 from IK import IK
 from servoPosition import servoPosition
-from constants import const, colors
-from utils import fatalError
+from constants import const
 
 
 invK = IK()
@@ -80,40 +79,23 @@ class sequencer(object):
         else:
             self.sim.gripper(1)
 
-    '''
-    caso 2: : devolver un objeto a su posicion de recogida
-    *   el robot esta en posicion "zona de trabajo" con la pinza abierta
+    def devuelve(self, codigo):
 
-    cirujano    >   "gaari ven"
-    garri       <   mueve a la posicion de "recogida/entraga"
-    cirujano    >   "gaari cierra"
-    garri       <   cierra la pinza y crea el child
-    cirujano    >   "gaari devuelve <<nombre objeto>>"
-    garri       <   mueve a la posicion de "zona de trabajo"
-                <   mueve a la posicion de especifica de donde se recogió el objeto
-                <   abre la pinza y elimina el child
-                <   mueve a la posición de la "zona de trabajo"
-    '''
-    def devuelve(self):
-        pass
+        #otra entrada de audio "gary devuelve <objeto>" MODIFICAR FICHERO AUDIO
+        #partimos posicion zona de entrega con pinza cerrada
+
+        self.sim.setPose(const.ZONA_DE_TRABAJO)
+
+        x = self.sim.object_positions[codigo][0]
+        y = self.sim.object_positions[codigo][1]
+        z = self.sim.object_positions[codigo][2]
+
+        angulos3 = invK.inverse_kinematics(x, y, z)
+        self.sim.setPose(servoPosition(angulos3).get("rad"))
+
+        self.abre()
 
 
-    '''
-    caso 1: el cirujano quiere un objeto "traer objeto":
-        *   garri esta en posicion inicial con la pinza abierta
-
-        cirujano    >   "gaari <<nombre objeto>>"
-        garri       <   mueve a la posición de la "zona de trabajo"
-                    <   toma una foto y con la IK saca las coordenadas
-                    <   se acerca al objeto
-                    <   cierra la pinza (make child)
-                    <   mueve a la posicion de "zona de trabajo"
-                    <   mueve a la posicion de "recogida/entraga"
-                    <   Espera a la orden de "gaari abre"
-        cirujano    >   "gaari abre"
-        garri       <   abre la pinza y elimina el child
-                    <   mueve a la posición de la "zona de trabajo"
-    '''
     def objeto(self, codigo):
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
@@ -123,17 +105,17 @@ class sequencer(object):
         z = 0.78
 
         # usar otra variable para grados
-        angulos = invK.inverse_kinematics(x, y, z)
+        angulos1 = invK.inverse_kinematics(x, y, z)
 
-        self.sim.setPose(servoPosition(angulos).get("rad"))
+        self.sim.setPose(servoPosition(angulos1).get("rad"))
 
         # toma foto y saca las x, y, z -> vision
         x = 0.4
         y = 0.225
         z = 0.705
 
-        angulos = invK.inverse_kinematics(x, y, z)
-        self.sim.setPose(servoPosition(angulos).get("rad"))
+        angulos2 = invK.inverse_kinematics(x, y, z)
+        self.sim.setPose(servoPosition(angulos2).get("rad"))
 
         # guardar la pocicion del objeto a recoger
         self.sim.object_positions[codigo][0] = x
@@ -141,7 +123,6 @@ class sequencer(object):
         self.sim.object_positions[codigo][2] = z
 
         # cierra la pinza (make child)
-        print(self.sim.object_positions.get(codigo))
         self.sim.close_grip(self.sim.object_positions.get(codigo)[3])
 
         #  mueve a la posicion de "zona de trabajo"

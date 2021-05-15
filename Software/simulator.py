@@ -99,9 +99,9 @@ class simulator:
             fatalError("numero de angulos no coinciden con el numero de servos")
 
         for i in range(len(self.servos)):
-            returnCode = sim.simxSetJointTargetPosition(self.clientID, self.servos[i], angles[i], simConst.simx_opmode_blocking)
+            returnCode = sim.simxSetJointTargetPosition(self.clientID, self.servos[len(angles) - i - 1], angles[len(angles) - i - 1], simConst.simx_opmode_blocking)
             if sleep != False:
-                time.sleep(0.2) # 100ms
+                time.sleep(.4) # 400ms
 
         return returnCode != -1
 
