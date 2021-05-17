@@ -42,6 +42,12 @@ class TestAudio(unittest.TestCase):
         command = "gary devuelve tijeras"
         self.assertEqual(voice.processCommand(command), (const.ORDEN_DEVUELVE, 21), f"Should be ({const.ORDEN_DEVUELVE}, 21)")
 
+        command = "gary devuelve ven"
+        self.assertEqual(voice.processCommand(command), ('REPITE', None), "Should be ('REPITE', None)")
+
+        command = "gary devuelve devuelve"
+        self.assertEqual(voice.processCommand(command), ('REPITE', None), "Should be ('REPITE', None)")
+
         command = "apágate"
         self.assertEqual(voice.processCommand(command), ('APAGAR', None), "Should be ('APAGAR', None)")
 

@@ -66,7 +66,7 @@ class VoiceRecognition(object):
             if orden_existe == True and orden_solicitada["label"] == "devuelve" and len(orden_list) == 3:
                 obj = orden_list[2]
 
-                for _objeto in const.ORDENES:
+                for _objeto in const.ORDENES[4:]:
                     if obj == _objeto["label"]:
                         objeto_retorno = _objeto["codigo"]
                         orden_existe_2 = True
