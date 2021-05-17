@@ -1,12 +1,15 @@
-#Instalar SpeechRecognition: pip install SpeechRecognition
+# encoding: utf-8
+# Instalar SpeechRecognition: pip install SpeechRecognition
 #Instalar PyAudio: (linux) pip install pyaudio (&) sudo apt-get install python3.7-dev
                 #(windows) pip install pipwin (&) pipwin install pyaudio
 
 #Realizamos el import de speech_recognition como sr
 
 import re
-from constants import const, colors
+
 import speech_recognition as sr
+
+from constants import colors, const
 from utils import echo
 
 #Asignamos el objeto Recognizer a RECONGNIZER
@@ -19,12 +22,21 @@ class VoiceRecognition(object):
     def __init__(self):
         pass
 
-
     def recognize(self, audio_source):
 
         # por el momento leer la orden por la consola
         cmd_input = self.voiceInput(audio_source)
         cmd_input = cmd_input.lower()
+
+        self.processCommand(cmd_input)
+
+
+    def processCommand(self, command):
+
+        if type(command) != str:
+            return None, None
+
+        cmd_input = command
 
         # considerar la entrada si la orden empieza con la palabra "gaari"
         if re.search("^(gary|cari)", cmd_input):
@@ -51,7 +63,7 @@ class VoiceRecognition(object):
 
             objeto_retorno = 0
             orden_existe_2 = False
-            if orden_existe == True and orden_solicitada["label"] == "devuelve":
+            if orden_existe == True and orden_solicitada["label"] == "devuelve" and len(orden_list) == 3:
                 obj = orden_list[2]
 
                 for _objeto in const.ORDENES:
@@ -79,7 +91,6 @@ class VoiceRecognition(object):
             return "APAGAR", None
 
         return None, None
-
 
     def voiceInput(self, source):
         echo("GAAR-I le escucha", color=colors.OKGREEN)
