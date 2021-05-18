@@ -1,23 +1,11 @@
 import time
 
+from constants import const
 from IK import IK
 from servoPosition import servoPosition
-from constants import const
-
 
 invK = IK()
 
-#    ORDENES = [
-#         { "label": "ven",                               "codigo": ORDEN_VEN },
-#         { "label": "abre",                              "codigo": ORDEN_ABRE },
-#         { "label": "agarra",                            "codigo": ORDEN_AGARRA },
-#         { "label": "devuelve",                          "codigo": ORDEN_DEVUELVE },
-
-#         { "label": "bisturí",                           "codigo": 20 },
-#         { "label": "tijeras",                           "codigo": 21 },
-#         { "label": "jeringuilla",                       "codigo": 22 },
-#         { "label": "pinza",                             "codigo": 23 },
-#     ]
 
 '''
 casos de uso:
@@ -57,6 +45,7 @@ caso 2: : devolver un objeto a su posicion de recogida
 class sequencer(object):
 
     sim = None
+    altura_mesa = 0.71
 
     def __init__(self, simInstance):
         self.sim = simInstance
@@ -99,28 +88,23 @@ class sequencer(object):
     def objeto(self, codigo):
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
+        # posicion fija
+        x = 0.425
+        y = -0.0420
+
         # toma foto y saca las x, y, z -> vision
-        x = 0.4
-        y = 0.225
-        z = 0.78
 
         # usar otra variable para grados
-        angulos1 = invK.inverse_kinematics(x, y, z)
-
+        angulos1 = invK.inverse_kinematics(x, y, self.altura_mesa + 0.075)
         self.sim.setPose(servoPosition(angulos1).get("rad"))
 
-        # toma foto y saca las x, y, z -> vision
-        x = 0.4
-        y = 0.225
-        z = 0.705
-
-        angulos2 = invK.inverse_kinematics(x, y, z)
+        angulos2 = invK.inverse_kinematics(x, y, self.altura_mesa)
         self.sim.setPose(servoPosition(angulos2).get("rad"))
 
         # guardar la pocicion del objeto a recoger
         self.sim.object_positions[codigo][0] = x
         self.sim.object_positions[codigo][1] = y
-        self.sim.object_positions[codigo][2] = z
+        self.sim.object_positions[codigo][2] = self.altura_mesa
 
         # cierra la pinza (make child)
         self.sim.close_grip(self.sim.object_positions.get(codigo)[3])

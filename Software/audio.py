@@ -25,10 +25,11 @@ class VoiceRecognition(object):
     def recognize(self, audio_source):
 
         # por el momento leer la orden por la consola
-        cmd_input = self.voiceInput(audio_source)
+        # cmd_input = self.voiceInput(audio_source)
+        cmd_input = input("Escribe la orden:\n")
         cmd_input = cmd_input.lower()
 
-        self.processCommand(cmd_input)
+        return self.processCommand(cmd_input)
 
 
     def processCommand(self, command):
