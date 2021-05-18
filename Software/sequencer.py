@@ -51,6 +51,8 @@ class sequencer(object):
         self.sim = simInstance
 
     def ven(self):
+        self.sim.setPose(const.PRE_ZONA_DE_ENTREGA_RECOGIDA)
+        time.sleep(2)
         self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)
 
     # reqiuere pruebas addicionales
@@ -60,6 +62,18 @@ class sequencer(object):
         else:
             self.sim.gripper(0)
         time.sleep(3)
+        self.sim.setPose(const.POST_ZONA_DE_ENTREGA_RECOGIDA)
+        time.sleep(1.5)
+        self.sim.setPose(const.ZONA_DE_TRABAJO)
+
+    def abre_devuelve(self):
+        if self.sim.current_object != None:
+            self.sim.open_grip(self.sim.current_object)
+        else:
+            self.sim.gripper(0)
+        #time.sleep(3)
+        #self.sim.setPose(const.POST_ZONA_DE_ENTREGA_RECOGIDA)
+        time.sleep(1.5)
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
     def agarra(self):
@@ -82,7 +96,7 @@ class sequencer(object):
         angulos3 = invK.inverse_kinematics(x, y, z)
         self.sim.setPose(servoPosition(angulos3).get("rad"))
 
-        self.abre()
+        self.abre_devuelve()
 
 
     def objeto(self, codigo):
@@ -116,6 +130,5 @@ class sequencer(object):
 
         #  mueve a la posicion de "recogida/entraga"
         self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)
-
 
 
