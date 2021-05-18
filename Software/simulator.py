@@ -34,6 +34,7 @@ class simulator:
     camara = None
 
     object_positions = dict()
+    code_to_object_instance = dict()
 
     def __init__(self):
         self.clientID = self.connect(self.port)
@@ -64,6 +65,13 @@ class simulator:
         self.object_positions[21] = [0, 0, 0, self.tijeras]
         self.object_positions[22] = [0, 0, 0, self.jeringuilla]
         self.object_positions[23] = [0, 0, 0, self.pinza]
+        
+        self.code_to_object_instance = {
+            "20": self.bisturi,
+            "21": self.tijeras,
+            "22": self.jeringuilla,
+            "23": self.pinza
+        }
 
         print("Simulator incializado")
 
@@ -121,6 +129,9 @@ class simulator:
         time.sleep(0.1)
         res = sim.simxSetObjectParent(self.clientID, object_handler, self.robotIq, True, simConst.simx_opmode_blocking)
 
+    def get_object_instance(self, code):
+        return self.code_to_object_instance[str(code)]
+        
     def resting_position(self):
         self.gripper(0)
         self.setPose(const.ZONA_DE_TRABAJO)

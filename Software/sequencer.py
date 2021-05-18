@@ -46,13 +46,14 @@ class sequencer(object):
 
     sim = None
     altura_mesa = 0.71
+    position_plataforma = 0
 
     def __init__(self, simInstance):
         self.sim = simInstance
 
     def ven(self):
         self.sim.setPose(const.PRE_ZONA_DE_ENTREGA_RECOGIDA)
-        time.sleep(2)
+        time.sleep(0.5)
         self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)
 
     # reqiuere pruebas addicionales
@@ -61,9 +62,10 @@ class sequencer(object):
             self.sim.open_grip(self.sim.current_object)
         else:
             self.sim.gripper(0)
-        time.sleep(3)
+            
+        time.sleep(2)
         self.sim.setPose(const.POST_ZONA_DE_ENTREGA_RECOGIDA)
-        time.sleep(1.5)
+        time.sleep(1)
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
     def abre_devuelve(self):
@@ -73,20 +75,31 @@ class sequencer(object):
             self.sim.gripper(0)
         #time.sleep(3)
         #self.sim.setPose(const.POST_ZONA_DE_ENTREGA_RECOGIDA)
-        time.sleep(1.5)
+        
+        time.sleep(3)
+        
+        [x, y, z] = self.sim.getDummyPosition()
+        angulos = invK.inverse_kinematics(x, y, z + 0.075)
+        self.sim.setPose(servoPosition(angulos).get("rad"))
+        
+        time.sleep(1)
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
-    def agarra(self):
-        if self.sim.current_object != None:
-            self.sim.close_grip(self.sim.current_object)
+    def agarra(self, codigo):
+        if codigo != None:
+            self.sim.close_grip(self.sim.get_object_instance(codigo))
         else:
             self.sim.gripper(1)
 
     def devuelve(self, codigo):
+        
+        self.agarra(codigo)
 
         #otra entrada de audio "gary devuelve <objeto>" MODIFICAR FICHERO AUDIO
         #partimos posicion zona de entrega con pinza cerrada
-
+        time.sleep(1.5)
+        self.sim.setPose(const.POST_ZONA_DE_ENTREGA_RECOGIDA)
+        time.sleep(1)
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
         x = self.sim.object_positions[codigo][0]
@@ -102,9 +115,19 @@ class sequencer(object):
     def objeto(self, codigo):
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
-        # posicion fija
-        x = 0.5250
-        y = 0.0330
+        # posiciones de los objetos     
+        if codigo == 20: #bisturi
+            x = 0.2500
+            y = 0.225
+        elif codigo == 21: #tijeras
+            x = 0.5000
+            y = 0.2750
+        elif codigo == 22: #jeringuilla
+            x = 0.5250
+            y = 0.0330
+        elif codigo == 23: #pinza
+            x = 0.2370
+            y = -0.0250
 
         # toma foto y saca las x, y, z -> vision
 
@@ -130,5 +153,4 @@ class sequencer(object):
 
         #  mueve a la posicion de "recogida/entraga"
         self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)
-
 

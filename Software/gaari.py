@@ -35,9 +35,9 @@ def procesar_orden(orden, objeto):
     elif orden == const.ORDEN_ABRE: # abre
         seq.abre()
         echo(const.GAARI_SAYS + "Gaari está abriendo", color=colors.OKGREEN)
-    elif orden == const.ORDEN_AGARRA: # agarra
-        seq.agarra()
-        echo(const.GAARI_SAYS + "Gaari agarra", color=colors.OKGREEN)
+    # elif orden == const.ORDEN_AGARRA: # agarra
+    #     seq.agarra()
+    #     echo(const.GAARI_SAYS + "Gaari agarra", color=colors.OKGREEN)
     elif orden == const.ORDEN_DEVUELVE: # devuelve
         seq.devuelve(objeto)
         echo(const.GAARI_SAYS + "Gaari va a devolver", color=colors.OKGREEN)
