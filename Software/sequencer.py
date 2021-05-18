@@ -59,7 +59,7 @@ class sequencer(object):
             self.sim.open_grip(self.sim.current_object)
         else:
             self.sim.gripper(0)
-
+        time.sleep(3)
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
     def agarra(self):
@@ -89,8 +89,8 @@ class sequencer(object):
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
         # posicion fija
-        x = 0.425
-        y = -0.0420
+        x = 0.5250
+        y = 0.0330
 
         # toma foto y saca las x, y, z -> vision
 
@@ -108,6 +108,8 @@ class sequencer(object):
 
         # cierra la pinza (make child)
         self.sim.close_grip(self.sim.object_positions.get(codigo)[3])
+
+        time.sleep(3)
 
         #  mueve a la posicion de "zona de trabajo"
         self.sim.setPose(const.ZONA_DE_TRABAJO)

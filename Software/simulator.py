@@ -13,7 +13,7 @@ from constants import const
 
 class simulator:
 
-    ipAddr = "192.168.2.3"
+    ipAddr = "127.0.0.1"
     port = 19999
     clientID = None
     servos = list()

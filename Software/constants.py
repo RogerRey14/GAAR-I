@@ -38,7 +38,8 @@ class const:
         { "label": "pinza",                             "codigo": 23 },
     ]
     ZONA_DE_TRABAJO = [-np.pi/8, np.pi/8, np.pi/8, 3*np.pi/4, -np.pi/8]
-    # ZONA_DE_ENTREGA_RECOGIDA = [-np.pi, np.pi/2, 0, 0, 0]
-    ZONA_DE_ENTREGA_RECOGIDA = [1.35619, 0.5708, 0.785398, 1.0944, 0.5708]
+    #ZONA_DE_ENTREGA_RECOGIDA = [-np.pi, np.pi/2, 0, 0, 0]
+    ZONA_DE_ENTREGA_RECOGIDA = [3*np.pi/4, np.pi/4, np.pi/3, np.pi/2.5, 0]
+    # ZONA_DE_ENTREGA_RECOGIDA = [1.35619, 0.5708, 0.785398, 1.0944, 0.5708]
 
     # 135, -90, -45, 120, -90
