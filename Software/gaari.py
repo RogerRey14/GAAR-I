@@ -17,14 +17,16 @@ from utils import echo
 from simulator import simulator
 from audio import VoiceRecognition
 from sequencer import sequencer
+from vision import vision
 import speech_recognition as sr
 
 import time
 
 
 sim = simulator()
+vis = vision(sim)
 voice = VoiceRecognition()
-seq = sequencer(sim)
+seq = sequencer(sim, vis)
 
 # Esta funcion es la que se encarga de recibir el codigo de la orden
 # y ejecutar la funcion o el workflow pertinente.
@@ -71,6 +73,9 @@ async def interpretar_comandos(loop):
 
 def robot_idle():
     sim.resting_position()
+    
+def robot_apagado():
+    sim.robot_shutdown()
 
 
 def init():
@@ -88,7 +93,7 @@ def init():
     finally:
         echo("Apagando...")
         loop.close()
-        robot_idle()
+        robot_apagado()
 
 
 def main(args):

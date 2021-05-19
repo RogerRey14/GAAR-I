@@ -45,11 +45,13 @@ caso 2: : devolver un objeto a su posicion de recogida
 class sequencer(object):
 
     sim = None
+    vision = None
     altura_mesa = 0.71
     position_plataforma = 0
 
-    def __init__(self, simInstance):
+    def __init__(self, simInstance, vision):
         self.sim = simInstance
+        self.vision = vision
 
     def ven(self):
         self.sim.setPose(const.PRE_ZONA_DE_ENTREGA_RECOGIDA)
@@ -130,6 +132,7 @@ class sequencer(object):
             y = -0.0250
 
         # toma foto y saca las x, y, z -> vision
+        # self.vision.get_coords(codigo)
 
         # usar otra variable para grados
         angulos1 = invK.inverse_kinematics(x, y, self.altura_mesa + 0.075)

@@ -7,7 +7,6 @@ import sympy as sp
 from sympy import *
 import coppelia.sim as sim
 import coppelia.simConst as simConst
-import sympy as sp
 from utils import fatalError
 from constants import const
 
@@ -135,4 +134,8 @@ class simulator:
     def resting_position(self):
         self.gripper(0)
         self.setPose(const.ZONA_DE_TRABAJO)
+        
+    def robot_shutdown(self):
+        self.gripper(0)
+        self.setPose([0, 0, 0, 0, 0])
 
