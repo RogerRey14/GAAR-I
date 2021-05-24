@@ -263,10 +263,8 @@ GAAR-I está contextualizado en el ámbito quirúrgico, por ello los objetos con
 
 La escena, estará ambientada en una sala de operaciones donde se realiza una operación. Dispondremos de varios objetos para realizar una simulación lo más realista posible, como son una camilla con un paciente tumbado encima, una mesita quirúrgica donde se entregarán los objetos que se ordene el cirujano/médico,  una mesa sobre la que estará GAAR-I, en la misma mesa estarán depositados los objetos que se le pedirán a GAAR-I y más elementos de atrezzo para la escena como paredes, una puerta, estanterías, botiquines, lámparas e incluso aparatos tecnológicos . El robot estará posicionado de manera estratégica para poder asistir óptimamente al cirujano/médico, que estará frente al paciente.
 
-La simulación se realizará mediante la interconexión entre Coppelia y Script de Python.
-
 <p align="center">
-<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/escena.PNG" height="220" />
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/escena.PNG" height="270" />
 </p>
 
 # Contribuciones
