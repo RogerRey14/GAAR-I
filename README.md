@@ -37,14 +37,14 @@ En el caso inverso, donde el cirujano quiere dejar un objeto,  este tendrá que 
 
 Las órdenes disponibles que hay son:
 
-    - GAAR-I “objeto”: Con esta orden el brazo acercará el objeto al cirujano y esperará a nuevas órdenes. La palabra “objeto” deberá ser sustituida por el instrumento deseado.
-    - GAAR-I abre: La pinza se abrirá y después de un segundo volverá a su posición inicial.
-    - GAAR-I devuelve “objeto”: La pinza se cerrará y después de un segundo procederá a dejar el objeto en su posición inicial y volverá a su posición inicial.  La palabra “objeto” deberá ser sustituida por el instrumento deseado.
-    - GAAR-I ven: Con esta orden el brazo se acercará al cirujano con la pinza abierta a la espera de nuevas órdenes.
+    * GAAR-I “objeto”: Con esta orden el brazo acercará el objeto al cirujano y esperará a nuevas órdenes. La palabra “objeto” deberá ser sustituida por el instrumento deseado.
+    * GAAR-I abre: La pinza se abrirá y después de un segundo volverá a su posición inicial.
+    * GAAR-I devuelve “objeto”: La pinza se cerrará y después de un segundo procederá a dejar el objeto en su posición inicial y volverá a su posición inicial.  La palabra “objeto” deberá ser sustituida por el instrumento deseado.
+    * GAAR-I ven: Con esta orden el brazo se acercará al cirujano con la pinza abierta a la espera de nuevas órdenes.
 
 El conjunto de objetos que va a ser capaz de reconocer serán los siguientes:
 
-    - Pinzas
-    - Bisturí
-    - Jeringuilla
-    - Tijeras
+    * Pinzas
+    * Bisturí
+    * Jeringuilla
+    * Tijeras
