@@ -46,3 +46,34 @@ El conjunto de objetos que va a ser capaz de reconocer serán los siguientes:
 - Bisturí
 - Jeringuilla
 - Tijeras
+
+# Requerimientos
+
+Para poder ejecutar el código se necesita tener instalado Anaconda y el simulador Coppelia.
+
+Según el sistema operativo que se utiliza debemos colocar los archivos *sim.py*, *simConst.py* y *remoteApi.so* correctos dentro de la carpeta *Software/coppelia* y eliminar los ya existente. Para encontrar estos archivos se debe ir a *Software/coppelia/windows* o *Software/coppelia/linux* según se requiera. Una vez hecho esto hay que seguir una sería de pasos que dejaremos anotados a continuación.
+
+## Windows
+
+- Primero de todo abriremos la consola de Anaconda, Anaconda Prompt.
+- Una vez abierto crearemos un entorno con la versión de Python correcta, la 3.6:
+``` conda create -n gaari python=3.6 ```
+- Ahora debemos activar el entorno creado con el comando:
+``` conda activate gaari ```
+- Seguidamente instalaremos las liberías necesarías:
+```
+pip install tensorflow==1.13.2
+pip install keras==2.0.8
+pip install imgaug==0.2.5
+pip install opencv-python
+pip install h5py==2.10.0
+pip install tqdm
+pip install imutils
+pip install sympy
+pip install SpeechRecognition
+pip install pipwin
+pipwin install pyaudio 
+```
+- Antes de ejecutar el código debemos abrir una de las escenas que hay dentro de la carpeta *Software/coppelia* con el Coppelia y darle al run.
+- Finalmente debemos situar la consola dentro de la carpeta *Software* y ejecutar el comando:
+```python gaari.py```
