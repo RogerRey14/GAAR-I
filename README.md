@@ -9,9 +9,9 @@
    * [Arquitectura del software](#arquitectura-del-software)
    * [Módulos](#módulos)
       * [Reconocimiento de voz](#reconocimiento-de-voz)
-      * [Detección de objetos](#deteccion-de-objetos)
+      * [Detección de objetos](#detección-de-objetos)
       * [Cinemática inversa](#cinemática-inversa)
-      * [Planificación de secuencias de movimiento](#planficacion-de-secuencias-de-movimiento)
+      * [Planificación de secuencias de movimiento](#planficación-de-secuencias-de-movimiento)
       * [Control de flujo](#control-de-flujo)
    * [Componentes y piezas 3d](#componentes-y-piezas-3d)
    * [Simulación](#simulación)
@@ -121,6 +121,8 @@ pip install pyaudio
 # Componentes y piezas 3d
 
 # Simulación
+
+# Contribuciones
 
 # Autores
 - [Daniel López Lara](https://github.com/Dani26999)
