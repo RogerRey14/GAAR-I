@@ -193,8 +193,9 @@ Para realizar la cinemática inversa del robot, al tratarse de un brazo de cinco
 GAAR-I tiene el objetivo de determinar la posición en la que se encuentra el objeto deseado, para ello tiene acoplada una cámara que le permite captar los instrumentos que hay. La cámara está enfocada en el área de trabajo del brazo, por ello lo que se captura es una pequeña parte de la escena. Mediante la visión por computador se determina cuál es el instrumento deseado y determina cuáles son las coordenadas de ese objeto respecto al área de trabajo. Una vez determinadas, estas coordenadas se tienen que pasar a las coordenadas reales globales de la escena, para ello se hace un escalado y una traslación en base a unos puntos de referencia predefinidos.
 A continuación se observan los cálculos realizados por el algoritmo para llevar a cabo la orden de traer la jeringuilla:
 
-
+<p align="center">
 <img alt="Secuencia cinematica" src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/grafica_cinematica.gif" width="350" />
+</p>
 
 ## Planificación de secuencias de movimiento
 
@@ -226,6 +227,19 @@ Esta parte es la encargada de:
 
 
 # Componentes y piezas 3d
+
+## Estructura del robot
+
+<p align="center">
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/robot_perfil_texto.png" width="400" />
+</p>
+
+GAAR-I es un brazo robot de 5 ejes, por tanto dispone de 5 servomotores para poder llevar a cabo su función. Los componentes y las piezas que integran el robot son la la base, 3 brazos, manipulador, cámara, micrófono y 6 servomotores incluyendo el del manipulador. El servomotor de la base y del brazo conectado al manipulador tienen libertad de giro de 180º en el eje Z. El resto de ejes que dependiendo del sistema de coordenadas tienen libertad de giro de 180º en el eje X o Y.
+
+<p align="center">
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/robot_perfiles.png" width="600" />
+</p>
+
 
 # Simulación
 
