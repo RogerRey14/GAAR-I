@@ -142,6 +142,7 @@ Constantemente está sacando información por consola para saber el estado en el
 El módulo de visión ha sido implementado mediante la red neuronal YOLOv2. Para que esta proceda a la detección de objetos primeramente se ha realizado un trabajo de recopilación de datos, más concretamente se han obtenido aproximadamente unas 2000 imágenes de los objetos a reconocer con diferentes ángulos, perspectivas, escalas y fondos. Después de capturar las imágenes se ha realizado un proceso de etiquetado, en el cual mediante una herramienta especializada para ello se ha especificado qué objeto es cada uno, creando así las 4 clases de objetos que se detectan.
 Una vez ya obtenido el dataset se ha procedido a entrenar la red para conseguir la clasificación de los objetos que aparecen en la escena. Una vez ya entrenada, como entrada toma la nueva imagen y como salida devuelve los bounding box donde se encuentra cada objeto.
 Como ejemplo, si la imagen de entrada fuera la siguiente:
+
 ![Area trabajo](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/area_trabajo.PNG)
 
 La salida de la red sería, por cada instrumento que detectase, el bounding box donde ha detectado ese objeto y el label/clase de este. La salida aplicada a la anterior imagen quedaría de la siguiente manera:
@@ -154,7 +155,7 @@ Una vez se tienen las herramientas que ve el robot clasificadas, se recorta el b
 
 El siguiente paso es binarizar la imagen, y aplicar morfología matemática, concretamente un “close” para rellenar posibles vacíos dentro del instrumento y en el caso de que el objeto sea una pinza posteriormente se le realiza una dilatación ya que es un instrumento muy fino e interesa aumentar el grosor para facilitar el último paso. Con todo esto se obtiene el objeto con una forma sólida, minimizando agujeros dentro del objeto y eliminando pequeños píxeles ruidosos de la imagen, quedando imágenes como la del ejemplo:
 
-![Bounding box jeringuilla con binarización y morfología]("https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bb_jeringuilla_morfo.PNG)
+![Bounding box jeringuilla con binarización y morfología](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bb_jeringuilla_morfo.PNG)
 
 Con todo este tratamiento podemos aplicar una función a la imagen resultante para encontrar el centro del objeto y su orientación, es decir encontramos la posición X e Y de destino y la orientación que debe tomar el último eje para poder coger el objeto de forma correcta.
 
