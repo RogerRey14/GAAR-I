@@ -112,6 +112,8 @@ La imágen representa el esquema hardware que tendríamos que haber realizado en
 
 # Arquitectura del software
 
+![Esquema del software](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/esquema_sw.png)
+
 # Módulos
 
 ## Reconocimiento de voz
