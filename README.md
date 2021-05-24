@@ -116,9 +116,57 @@ La imágen representa el esquema hardware que tendríamos que haber realizado en
 
 ## Reconocimiento de voz
 
+Tal y como se ha mencionado en el apartado de Arquitectura del Software, uno de los módulos más importantes es el reconocimiento de voz. En este apartado, se explicará más en detalle su funcionamiento y se mostrará el resultado obtenido.
+La librería de python SpeechRecognition nos permite mediante la API de Google, transformar un input de audio a texto. De esta manera podemos pasarle los comandos a procesar por los demás módulos de GAAR-I. Una de las características de este módulo es que está constantemente “escuchando” o esperando una orden por parte del usuario, debido a esto, se le ha añadido una opción de supresión de sonido ambiente para que el input pueda ser más nítido. Además, se ha escogido como único idioma intérprete el español. Este es el listado total de órdenes que GAAR-I acepta:
+
+GAAR-I tijeras 			(entrega el objeto tijeras)
+GAAR-I bisturí 			(entrega el objeto bisturí)
+GAAR-I jeringuilla 			(entrega el objeto jeringuilla)
+GAAR-I pinza			(entrega el objeto pinza)
+GAAR-I abre				(abre la pinza)
+GAAR-I ven				(va a la posición de entrega/recogida)
+GAAR-I devuelve tijeras		(devuelve tijeras a su posición inicial)
+GAAR-I devuelve bisturí		(devuelve bisturí a su posición inicial)
+GAAR-I devuelve jeringuilla	(devuelve jeringuilla a su posición inicial)
+GAAR-I devuelve pinza		(devuelve pinza a su posición inicial)
+apágate / adiós			(apaga el robot)
+
+
+El nombre GAAR-I lo detecta como “Gary” o “Cari”, de manera interna se trata con estos términos.
+Constantemente está sacando información por consola para saber el estado en el cual nos encontramos. En caso que se introduzca una orden válida, mostrará ésta por consola y en caso que la orden no sea válida, pedirá que se vuelva a repetir. Este es un ejemplo de un ciclo entero de entregar y recoger un objeto con errores forzados de por medio:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/voice_recognition.PNG" align="right" width="300" alt="header pic"/>
+
 ## Detección de objetos
 
+El módulo de visión ha sido implementado mediante la red neuronal YOLOv2. Para que esta proceda a la detección de objetos primeramente se ha realizado un trabajo de recopilación de datos, más concretamente se han obtenido aproximadamente unas 2000 imágenes de los objetos a reconocer con diferentes ángulos, perspectivas, escalas y fondos. Después de capturar las imágenes se ha realizado un proceso de etiquetado, en el cual mediante una herramienta especializada para ello se ha especificado qué objeto es cada uno, creando así las 4 clases de objetos que se detectan.
+Una vez ya obtenido el dataset se ha procedido a entrenar la red para conseguir la clasificación de los objetos que aparecen en la escena. Una vez ya entrenada, como entrada toma la nueva imagen y como salida devuelve los bounding box donde se encuentra cada objeto.
+Como ejemplo, si la imagen de entrada fuera la siguiente:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/area_trabajo.PNG" align="right" width="300" alt="header pic"/>
+
+La salida de la red sería, por cada instrumento que detectase, el bounding box donde ha detectado ese objeto y el label/clase de este. La salida aplicada a la anterior imagen quedaría de la siguiente manera:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bounding_boxes.PNG" align="right" width="300" alt="header pic"/>
+
+Una vez se tienen las herramientas que ve el robot clasificadas, se recorta el bounding box del instrumento deseado, quedando como la siguiente imagen:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bb_jeringuilla.PNG" align="right" width="300" alt="header pic"/>
+
+El siguiente paso es binarizar la imagen, y aplicar morfología matemática, concretamente un “close” para rellenar posibles vacíos dentro del instrumento y en el caso de que el objeto sea una pinza posteriormente se le realiza una dilatación ya que es un instrumento muy fino e interesa aumentar el grosor para facilitar el último paso. Con todo esto se obtiene el objeto con una forma sólida, minimizando agujeros dentro del objeto y eliminando pequeños píxeles ruidosos de la imagen, quedando imágenes como la del ejemplo:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bb_jeringuilla_morfo.PNG" align="right" width="300" alt="header pic"/>
+
+Con todo este tratamiento podemos aplicar una función a la imagen resultante para encontrar el centro del objeto y su orientación, es decir encontramos la posición X e Y de destino y la orientación que debe tomar el último eje para poder coger el objeto de forma correcta.
+
 ## Cinemática inversa
+
+Esquema simplificado del robot:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/esquema_gaari.PNG" align="right" width="300" alt="header pic"/>
+
+Parámetros Denavit-hartenberg:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/dh.PNG" align="right" width="300" alt="header pic"/>
+
+Para realizar la cinemática inversa del robot, al tratarse de un brazo de cinco ejes no se ha podido realizar mediante la matriz de parámetros de Denavit-Hartenberg. Por ello la solución se ha realizado mediante métodos geométricos y desacoplamiento cinemático mediante los ángulos de Euler.
+GAAR-I tiene el objetivo de determinar la posición en la que se encuentra el objeto deseado, para ello tiene acoplada una cámara que le permite captar los instrumentos que hay. La cámara está enfocada en el área de trabajo del brazo, por ello lo que se captura es una pequeña parte de la escena. Mediante la visión por computador se determina cuál es el instrumento deseado y determina cuáles son las coordenadas de ese objeto respecto al área de trabajo. Una vez determinadas, estas coordenadas se tienen que pasar a las coordenadas reales globales de la escena, para ello se hace un escalado y una traslación en base a unos puntos de referencia predefinidos.
+A continuación se observan los cálculos realizados por el algoritmo para llevar a cabo la orden de traer la jeringuilla:
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/sec_cinematica.PNG" align="right" width="300" alt="header pic"/>
+
 
 ## Planificación de secuencias de movimiento
 
