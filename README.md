@@ -104,6 +104,9 @@ pip install pyaudio
 
 # Esquema del hardware
 
+La imágen representa el esquema hardware que tendríamos que haber realizado en caso que hubieramos podido realizar el brazo robótico físicamente. Los componentes han sido seleccionados teniendo en cuenta que se dispone de un presupuesto limitado, con lo que para construir este proyecto se necesitarían 116,5€. En el cálculo del presupuesto se ha realizado teniendo en cuenta los costes de los materiales para la impresión 3D y los cables para realizar las conexiones.
+![Esquema del hardware](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/hardware.png)
+
 # Arquitectura del software
 
 # Módulos
@@ -123,6 +126,15 @@ pip install pyaudio
 # Simulación
 
 # Contribuciones
+
+Estas son las contribuciones que aporta nuestro proyecto al mundo, sobre todo en el ámbito quirúrgico y medicinal:
+- Automatización del proceso de asistencia de objetos a un cirujano/médico. 
+- Reducción de personal durante los procesos quirúrgicos en una sala de operaciones.
+- Mayor precisión a la hora de asistir al cirujano/médico acercándo los instrumentos que sean necesarios.
+- Gracias al control por voz, se permite dar órdenes al brazo robótico y tener libres las manos al mismo tiempo.
+- Visión por computador integrada con una inteligencia artificial que permite determinar cuál es el objeto deseado, permitiendo que la colocación de los objetos no esté totalmente predefinida y tenga cierto grado de flexibilidad.
+- Evita la pérdida de tiempo y errores humanos derivados de la presión, distracción o cansancio. ya que el brazo robótico reconoce y encuentra el objeto rápidamente. 
+
 
 # Autores
 - [Daniel López Lara](https://github.com/Dani26999)
