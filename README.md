@@ -11,7 +11,7 @@
       * [Reconocimiento de voz](#reconocimiento-de-voz)
       * [Detección de objetos](#detección-de-objetos)
       * [Cinemática inversa](#cinemática-inversa)
-      * [Planificación de secuencias de movimiento](#planficación-de-secuencias-de-movimiento)
+      * [Planificación de secuencias de movimiento](#planificación-de-secuencias-de-movimiento)
       * [Control de flujo](#control-de-flujo)
    * [Componentes y piezas 3d](#componentes-y-piezas-3d)
    * [Simulación](#simulación)
