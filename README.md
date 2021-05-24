@@ -53,6 +53,8 @@ El conjunto de objetos que va a ser capaz de reconocer serán los siguientes:
 
 Para poder ejecutar el código se necesita tener instalado Anaconda y el simulador Coppelia.
 
+Es necesario descargar dos archivos que corresponden a los pesos inciales de la red neuronal YOLOv2 (full_yolo_backend.h5) y los pesos finales despues de realizar el reentreno (final_weights.h5). Descargar ambos ficheros de este [link](https://drive.google.com/drive/folders/1kTTjqQHphzvhfBYMRvWN7xF5b4su-gsq?usp=sharing) y guardar en la carpeta *Software*.
+
 Según el sistema operativo que se utiliza debemos colocar los archivos *sim.py*, *simConst.py* y *remoteApi.so* correctos dentro de la carpeta *Software/coppelia* y eliminar los ya existente. Para encontrar estos archivos se debe ir a *Software/coppelia/windows* o *Software/coppelia/linux* según se requiera. Una vez hecho esto hay que seguir una sería de pasos que dejaremos anotados a continuación.
 
 ## Windows
