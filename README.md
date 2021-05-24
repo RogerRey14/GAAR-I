@@ -197,6 +197,10 @@ A continuación se observan los cálculos realizados por el algoritmo para lleva
 
 # Simulación
 
+La escena, estará ambientada en una sala de operaciones donde se realiza una operación. Dispondremos de varios objetos para realizar una simulación lo más realista posible, como son una camilla con un paciente tumbado encima, una mesita quirúrgica donde se entregarán los objetos que se ordene el cirujano/médico,  una mesa sobre la que estará GAAR-I, en la misma mesa estarán depositados los objetos que se le pedirán a GAAR-I y más elementos de atrezzo para la escena como paredes, una puerta, estanterías, botiquines, lámparas e incluso aparatos tecnológicos . El robot estará posicionado de manera estratégica para poder asistir óptimamente al cirujano/médico, que estará frente al paciente.
+
+La simulación se realizará mediante la interconexión entre Coppelia y Script de Python.
+
 # Contribuciones
 
 Estas son las contribuciones que aporta nuestro proyecto al mundo, sobre todo en el ámbito quirúrgico y medicinal:
