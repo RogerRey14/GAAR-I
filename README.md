@@ -267,6 +267,10 @@ La escena, estará ambientada en una sala de operaciones donde se realiza una op
 <img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/escena.PNG" height="270" />
 </p>
 
+<p align="center">
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/ejemplo_simulacion.gif" height="300" />
+</p>
+
 # Contribuciones
 
 Estas son las contribuciones que aporta nuestro proyecto al mundo, sobre todo en el ámbito quirúrgico y medicinal:
