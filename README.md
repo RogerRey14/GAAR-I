@@ -7,15 +7,15 @@
    * [Requerimientos](#requerimientos)
    * [Esquema del hardware](#esquema-del-hardware)
    * [Arquitectura del software](#arquitectura-del-software)
-   * [Módulos](#modulos)
-      * [Reconocimiento de voz](#reconocimiento-voz)
-      * [Detección de objetos](#deteccion-objetos)
-      * [Cinemática inversa](#cinematica-inversa)
-      * [Planificación de secuencias de movimiento](#planficacion-movimiento)
-      * [Control de flujo](#control-flujo)
-   * [Componentes y piezas 3d](#3d)
-   * [Simulación](#simulacion)
-   * [Contribuciones](#conrtibuciones)
+   * [Módulos](#módulos)
+      * [Reconocimiento de voz](#reconocimiento-de-voz)
+      * [Detección de objetos](#deteccion-de-objetos)
+      * [Cinemática inversa](#cinemática-inversa)
+      * [Planificación de secuencias de movimiento](#planficacion-de-secuencias-de-movimiento)
+      * [Control de flujo](#control-de-flujo)
+   * [Componentes y piezas 3d](#componentes-y-piezas-3d)
+   * [Simulación](#simulación)
+   * [Contribuciones](#contribuciones)
    * [Autores](#autores)
 
 # What is this?
@@ -102,4 +102,28 @@ pip install pyaudio
 - Finalmente debemos situar la consola dentro de la carpeta *Software* y ejecutar el comando:
 ```python gaari.py```
 
-## Esquema del hardware
+# Esquema del hardware
+
+# Arquitectura del software
+
+# Módulos
+
+## Reconocimiento de voz
+
+## Detección de objetos
+
+## Cinemática inversa
+
+## Planificación de secuencias de movimiento
+
+## Controles de flujo
+
+# Componentes y piezas 3d
+
+# Simulación
+
+# Autores
+- [Daniel López Lara](https://github.com/Dani26999)
+- [Javier Alegre Revuelta](https://github.com/Javier-21)
+- [Roger Rey Mesa](https://github.com/RogerRey14)
+- [Mohsin Ríaz](https://github.com/im-mou)
