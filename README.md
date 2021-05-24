@@ -134,6 +134,7 @@ apágate / adiós			(apaga el robot)
 
 El nombre GAAR-I lo detecta como “Gary” o “Cari”, de manera interna se trata con estos términos.
 Constantemente está sacando información por consola para saber el estado en el cual nos encontramos. En caso que se introduzca una orden válida, mostrará ésta por consola y en caso que la orden no sea válida, pedirá que se vuelva a repetir. Este es un ejemplo de un ciclo entero de entregar y recoger un objeto con errores forzados de por medio:
+
 ![Reconocimiento de voz](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/voice_recognition.PNG)
 
 ## Detección de objetos
