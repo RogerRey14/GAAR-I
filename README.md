@@ -265,6 +265,10 @@ La escena, estará ambientada en una sala de operaciones donde se realiza una op
 
 La simulación se realizará mediante la interconexión entre Coppelia y Script de Python.
 
+<p align="center">
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/escena.png" height="220" />
+</p>
+
 # Contribuciones
 
 Estas son las contribuciones que aporta nuestro proyecto al mundo, sobre todo en el ámbito quirúrgico y medicinal:
