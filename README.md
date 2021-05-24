@@ -5,7 +5,7 @@
    * [What is this?](#what-is-this)
    * [Descripción](#descripcion)
    * [Requerimientos](#requerimientos)
-   * [Esquema de hardware](#esquema-de-hardware)
+   * [Esquema del hardware](#esquema-de-hardware)
    * [Arquitectura del software](#arquitectura-del-software)
    * [Módulos](#modulos)
       * [Reconocimiento de voz](#reconocimiento-voz)
@@ -77,3 +77,29 @@ pipwin install pyaudio
 - Antes de ejecutar el código debemos abrir una de las escenas que hay dentro de la carpeta *Software/coppelia* con el Coppelia y darle al run.
 - Finalmente debemos situar la consola dentro de la carpeta *Software* y ejecutar el comando:
 ```python gaari.py```
+
+## Linux
+- Primero de todo abriremos una consola.
+- Una vez abierto crearemos un entorno con la versión de Python correcta, la 3.6:
+``` conda create -n gaari python=3.6 ```
+- Ahora debemos activar el entorno creado con el comando:
+``` conda activate gaari ```
+- Seguidamente instalaremos las liberías necesarías:
+```
+pip install tensorflow==1.13.2
+pip install keras==2.0.8
+pip install imgaug==0.2.5
+pip install opencv-python
+pip install h5py==2.10.0
+pip install tqdm
+pip install imutils
+pip install sympy
+pip install SpeechRecognition
+pip install pyaudio 
+```
+- Si la instalación de *pyaudio* da problemas hay que instalar el siguiente paquete: ```sudo apt-get install portaudio19-dev```
+- Antes de ejecutar el código debemos abrir una de las escenas que hay dentro de la carpeta *Software/coppelia* con el Coppelia y darle al run.
+- Finalmente debemos situar la consola dentro de la carpeta *Software* y ejecutar el comando:
+```python gaari.py```
+
+## Esquema del hardware
