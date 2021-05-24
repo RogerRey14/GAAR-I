@@ -3,8 +3,37 @@ import time
 from constants import const
 from IK import IK
 from servoPosition import servoPosition
+from vision_net import vision_net####
+import coppelia.sim as sim
+import coppelia.simConst as simConst
+import numpy as np
+import math
+import time
+import argparse
+import os
+import numpy as np
+import json
+import cv2
+import copy
+import imgaug as ia
+from imgaug import augmenters as iaa
+from keras.utils import Sequence
+import xml.etree.ElementTree as ET
+import matplotlib.pyplot as plt
+from skimage import morphology
+from skimage.color import rgb2gray
+from skimage import measure
+from keras.models import Model
+import tensorflow as tf
+from keras.layers import Reshape, Activation, Conv2D, Input, MaxPooling2D, BatchNormalization, Flatten, Dense, Lambda
+from keras.layers.advanced_activations import LeakyReLU
+from keras.layers.merge import concatenate
+from keras.optimizers import SGD, Adam, RMSprop
+from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+import matplotlib.pyplot as plt
 
 invK = IK()
+#vision = vision_net()
 
 
 '''
@@ -54,9 +83,14 @@ class sequencer(object):
         self.vision = vision
 
     def ven(self):
-        self.sim.setPose(const.PRE_ZONA_DE_ENTREGA_RECOGIDA)
+        angulos = invK.inverse_kinematics(-0.3642, 0.5892, 0.84)
+        self.sim.setPose(servoPosition(angulos).get("rad"))
         time.sleep(0.5)
-        self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)
+        angulos = invK.inverse_kinematics(-0.3642, 0.5892, 0.82)
+        self.sim.setPose(servoPosition(angulos).get("rad"))
+        '''self.sim.setPose(const.PRE_ZONA_DE_ENTREGA_RECOGIDA)
+        time.sleep(0.5)
+        self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)'''
 
     # reqiuere pruebas addicionales
     def abre(self):
@@ -66,7 +100,8 @@ class sequencer(object):
             self.sim.gripper(0)
             
         time.sleep(2)
-        self.sim.setPose(const.POST_ZONA_DE_ENTREGA_RECOGIDA)
+        angulos = invK.inverse_kinematics(-0.3642, 0.5892, 0.84)
+        self.sim.setPose(servoPosition(angulos).get("rad"))
         time.sleep(1)
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
@@ -107,44 +142,52 @@ class sequencer(object):
         x = self.sim.object_positions[codigo][0]
         y = self.sim.object_positions[codigo][1]
         z = self.sim.object_positions[codigo][2]
+        orient = self.sim.object_positions[codigo][4]
 
-        angulos3 = invK.inverse_kinematics(x, y, z)
+        angulos3 = invK.inverse_kinematics(x, y, z, Axis5=orient)
         self.sim.setPose(servoPosition(angulos3).get("rad"))
 
         self.abre_devuelve()
 
 
+
     def objeto(self, codigo):
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
-        # posiciones de los objetos     
-        if codigo == 20: #bisturi
-            x = 0.2500
-            y = 0.225
-        elif codigo == 21: #tijeras
-            x = 0.5000
-            y = 0.2750
-        elif codigo == 22: #jeringuilla
-            x = 0.5250
-            y = 0.0330
-        elif codigo == 23: #pinza
-            x = 0.2370
-            y = -0.0250
+        # Obtener posiciones de los objetos 
 
-        # toma foto y saca las x, y, z -> vision
-        # self.vision.get_coords(codigo)
+        if codigo == 20: #bisturi  
+            label = 'bisturi'
+        elif codigo == 21: #tijeras
+            label = 'tijera'
+        elif codigo == 22: #jeringuilla
+            label = 'jeringuilla'
+        elif codigo == 23: #pinza
+            label = 'pinza'
+
+        
+        # Obtener las coordenadas y el grado de giro
+        pixel, orientation = self.vision.get_coords(self.sim.camara, label, self.sim.clientID)
+  
+
+        # normalizar las coordenadas para el simulador
+        x, y = self.vision.transform_xy(pixel[1], pixel[0])
 
         # usar otra variable para grados
-        angulos1 = invK.inverse_kinematics(x, y, self.altura_mesa + 0.075)
-        self.sim.setPose(servoPosition(angulos1).get("rad"))
+        angulos1 = invK.inverse_kinematics(x, y, self.altura_mesa + 0.075, Axis5=orientation)
 
-        angulos2 = invK.inverse_kinematics(x, y, self.altura_mesa)
+        
+        self.sim.setPose(servoPosition(angulos1).get("rad"))
+        
+
+        angulos2 = invK.inverse_kinematics(x, y, self.altura_mesa, Axis5=orientation)
         self.sim.setPose(servoPosition(angulos2).get("rad"))
 
         # guardar la pocicion del objeto a recoger
         self.sim.object_positions[codigo][0] = x
         self.sim.object_positions[codigo][1] = y
         self.sim.object_positions[codigo][2] = self.altura_mesa
+        self.sim.object_positions[codigo][4] = orientation
 
         # cierra la pinza (make child)
         self.sim.close_grip(self.sim.object_positions.get(codigo)[3])
@@ -155,5 +198,9 @@ class sequencer(object):
         self.sim.setPose(const.ZONA_DE_TRABAJO)
 
         #  mueve a la posicion de "recogida/entraga"
-        self.sim.setPose(const.ZONA_DE_ENTREGA_RECOGIDA)
+        angulos = invK.inverse_kinematics(-0.3642, 0.5892, 0.8293)
+        self.sim.setPose(servoPosition(angulos).get("rad"))
+        time.sleep(0.5)
+        #angulos = invK.inverse_kinematics(-0.3642, 0.5892, 0.82)
+        #self.sim.setPose(servoPosition(angulos).get("rad"))
 

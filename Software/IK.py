@@ -43,7 +43,6 @@ class IK(object):
         j1=90-Axis2*180/np.pi #joint1
         j2=180-Axis3*180/np.pi #joint2
         j3=180-Axis4*180/np.pi #joint3
-        j4=Axis5 + j0 #joint5 Se ha dado en grados inicialmente
-
+        j4=(Axis5*180/np.pi) + j0 #joint5 Se ha dado en grados inicialmente
         # devuelve angulo en grados
         return [j0, j1, j2, j3, j4]

@@ -60,10 +60,10 @@ class simulator:
 
 
         # Inicializar el diccionario con las posiciones de los objetos
-        self.object_positions[20] = [0, 0, 0, self.bisturi]
-        self.object_positions[21] = [0, 0, 0, self.tijeras]
-        self.object_positions[22] = [0, 0, 0, self.jeringuilla]
-        self.object_positions[23] = [0, 0, 0, self.pinza]
+        self.object_positions[20] = [0, 0, 0, self.bisturi, 0]
+        self.object_positions[21] = [0, 0, 0, self.tijeras, 0]
+        self.object_positions[22] = [0, 0, 0, self.jeringuilla, 0]
+        self.object_positions[23] = [0, 0, 0, self.pinza, 0]
         
         self.code_to_object_instance = {
             "20": self.bisturi,
@@ -108,8 +108,8 @@ class simulator:
         for i in range(len(self.servos)):
             # returnCode = sim.simxSetJointTargetPosition(self.clientID, self.servos[len(angles) - i - 1], angles[len(angles) - i - 1], simConst.simx_opmode_blocking)
             returnCode = sim.simxSetJointTargetPosition(self.clientID, self.servos[i], angles[i], simConst.simx_opmode_oneshot)
-            if sleep != False:
-                time.sleep(.4) # 400ms
+            if sleep:
+                time.sleep(0.4)
 
         return returnCode != -1
 
@@ -125,7 +125,7 @@ class simulator:
     def close_grip(self, object_handler):
         self.current_object = object_handler
         self.gripper(1)
-        time.sleep(0.1)
+        time.sleep(1)
         res = sim.simxSetObjectParent(self.clientID, object_handler, self.robotIq, True, simConst.simx_opmode_blocking)
 
     def get_object_instance(self, code):
