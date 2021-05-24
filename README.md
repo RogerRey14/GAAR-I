@@ -1,8 +1,8 @@
 # GAAR-I
-<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/scene_1.png" align="right" width="300" alt="header pic"/>
 <b>Generic Arm Assist Robot - Intelligent</b>
 
 # Tabla de contenidos
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/scene_1.png" align="right" width="300" alt="header pic"/>
    * [What is this?](#what-is-this)
    * [Descripción](#descripción)
    * [Requerimientos](#requerimientos)
