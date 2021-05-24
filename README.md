@@ -152,17 +152,20 @@ Constantemente está sacando información por consola para saber el estado en el
 
 El módulo de visión ha sido implementado mediante la red neuronal YOLOv2. Para que esta proceda a la detección de objetos primeramente se ha realizado un trabajo de recopilación de datos, más concretamente se han obtenido aproximadamente unas 2000 imágenes de los objetos a reconocer con diferentes ángulos, perspectivas, escalas y fondos. Después de capturar las imágenes se ha realizado un proceso de etiquetado, en el cual mediante una herramienta especializada para ello se ha especificado qué objeto es cada uno, creando así las 4 clases de objetos que se detectan.
 Una vez ya obtenido el dataset se ha procedido a entrenar la red para conseguir la clasificación de los objetos que aparecen en la escena. Una vez ya entrenada, como entrada toma la nueva imagen y como salida devuelve los bounding box donde se encuentra cada objeto.
-Como ejemplo, si la imagen de entrada fuera la siguiente:
+Como ejemplo, si las imagenes de entrada fueran las siguientes:
 
-![Area trabajo](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/area_trabajo.PNG)
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/area_trabajo.PNG" height="250" width="250"><img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/area_trabajo2.PNG" height="250" width="250">
 
-La salida de la red sería, por cada instrumento que detectase, el bounding box donde ha detectado ese objeto y el label/clase de este. La salida aplicada a la anterior imagen quedaría de la siguiente manera:
 
-![Bounding boxes](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bounding_boxes.PNG)
+La salida de la red sería, por cada instrumento que detectase, el bounding box donde ha detectado ese objeto y el label/clase de este. La salida aplicada a las anteriores imagenes quedaría de la siguiente manera, respectivamente:
+
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bounding_boxes.PNG" height="250" width="250"><img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bounding_boxes2.PNG" height="250" width="250">
+
+
 
 Una vez se tienen las herramientas que ve el robot clasificadas, se recorta el bounding box del instrumento deseado, quedando como la siguiente imagen:
 
-![Bounding box de la jeringuilla](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bb_jeringuilla.PNG)
+![Bounding box de la jeringuilla](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/bb_jeringuilla.PNG) 
 
 El siguiente paso es binarizar la imagen, y aplicar morfología matemática, concretamente un “close” para rellenar posibles vacíos dentro del instrumento y en el caso de que el objeto sea una pinza posteriormente se le realiza una dilatación ya que es un instrumento muy fino e interesa aumentar el grosor para facilitar el último paso. Con todo esto se obtiene el objeto con una forma sólida, minimizando agujeros dentro del objeto y eliminando pequeños píxeles ruidosos de la imagen, quedando imágenes como la del ejemplo:
 
