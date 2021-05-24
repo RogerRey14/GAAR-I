@@ -121,7 +121,7 @@ La imágen representa el esquema hardware que tendríamos que haber realizado en
 
 # Arquitectura del software
 
-Como se puede observar en la siguiente imagen, GAAR-I está conformado por 5 módulos principales:
+GAAR-I está conformado por 5 módulos principales:
 - Módulo de reconocimiento de voz, que mediante los comandos que el usuario le dicta es capaz de realizar lo que este desea.
 - Módulo de detección de objetos el cual le permite detectar objetos y decidir por dónde y con qué orientación coger el instrumento.
 - Módulo de planificación de trayectorias donde están determinadas las posiciones iniciales y el conjunto de movimientos que debe realizar según la orden indicada a realizar.
