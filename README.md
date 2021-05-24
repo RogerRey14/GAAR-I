@@ -1,4 +1,5 @@
 # GAAR-I
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/scene_1.png" align="right" width="300" alt="header pic"/>
 <b>Generic Arm Assist Robot - Intelligent</b>
 
 # Tabla de contenidos
@@ -105,6 +106,7 @@ pip install pyaudio
 # Esquema del hardware
 
 La imágen representa el esquema hardware que tendríamos que haber realizado en caso que hubieramos podido realizar el brazo robótico físicamente. Los componentes han sido seleccionados teniendo en cuenta que se dispone de un presupuesto limitado, con lo que para construir este proyecto se necesitarían 116,5€. En el cálculo del presupuesto se ha realizado teniendo en cuenta los costes de los materiales para la impresión 3D y los cables para realizar las conexiones.
+
 ![Esquema del hardware](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/hardware.png)
 
 # Arquitectura del software
