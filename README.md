@@ -193,7 +193,32 @@ A continuación se observan los cálculos realizados por el algoritmo para lleva
 
 ## Planificación de secuencias de movimiento
 
+Este módulo se dedica a crear una secuencia de movimientos del robot para poder llevar a cabo una orden.
+Empieza desde su posición inicial (reposo), ejecuta la orden y vuelve a su posición de reposo.
+Ejemplo:
+- El robot se encuentra en posición de reposo preprogramada.
+- Se le ordena traer un objeto en concreto.
+- El robot planificará la siguiente secuencia:
+  - Ir desde la posición actual a la de la zona de los objetos.
+  - Navegar a la posición concreta del objeto a recoger.
+  - Realizar las operaciones de la pinza para agarrar el objeto.
+  - Navegar a la posición preprogramada para ofrecer el objeto al usuario.
+  - Volver a la posición de reposo del robot.
+
+
 ## Control de flujo
+
+El módulo de control de flujo se dedica a controlar y coordinar el resto de módulos para poder efectuar las órdenes deseadas por el usuario.
+Esta parte es la encargada de: 
+- Poner en marcha al robot y realizar la secuencia de inicialización y pruebas.
+- Tener integrados los algoritmos de voice-to-text.
+- Tener integrado el algoritmo de planificación de la secuencia de movimientos.
+- Ejecutar la secuencia de movimiento usando la cinemática inversa.
+- Usar algoritmos de visión para ubicar los objetos.
+- Controlar el estado de la secuencia de movimientos.
+- Ver si la orden se ha completado para volver a la posición de reposo.
+- Esperar a la siguiente orden.
+
 
 # Componentes y piezas 3d
 
