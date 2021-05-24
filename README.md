@@ -114,6 +114,15 @@ La imágen representa el esquema hardware que tendríamos que haber realizado en
 
 ![Esquema del software](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/esquema_sw.PNG)
 
+Como se puede observar en la anterior imagen, GAAR-I está conformado por 5 módulos principales:
+- Módulo de reconocimiento de voz, que mediante los comandos que el usuario le dicta es capaz de realizar lo que este desea.
+- Módulo de detección de objetos el cual le permite detectar objetos y decidir por dónde y con qué orientación coger el instrumento.
+- Módulo de planificación de trayectorias donde están determinadas las posiciones iniciales y el conjunto de movimientos que debe realizar según la orden indicada a realizar.
+- Módulo de la cinemática inversa, el cual se encarga de calcular los ángulos necesarios para llegar a la posición del instrumento y poderlo coger correctamente.
+- Módulo del control de flujo, encargado de coordinar todos los anteriores módulos para conseguir el objetivo del robot.
+La cámara, que se utiliza cuando GAAR-I debe detectar un objeto para dárselo al cirujano, el micrófono para escuchar lo que se le ordena y los servos que permiten el movimiento están conectados a la Raspberry Pi.
+
+
 # Módulos
 
 ## Reconocimiento de voz
