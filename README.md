@@ -116,7 +116,7 @@ pip install pyaudio
 
 ## Planificación de secuencias de movimiento
 
-## Controles de flujo
+## Control de flujo
 
 # Componentes y piezas 3d
 
