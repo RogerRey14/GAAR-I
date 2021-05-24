@@ -36,12 +36,14 @@ Al emitir una orden de forma oral el cirujano el robot procesa la petición del 
 En el caso inverso, donde el cirujano quiere dejar un objeto,  este tendrá que emitir otra orden para que el brazo vaya a la posición cerca del cirujano y este coloque el objeto en las pinzas, cuando quiera que el brazo cierre la pinza y devuelva el objeto juntos al resto deberá especificarlo.
 
 Las órdenes disponibles que hay son:
+
     - GAAR-I “objeto”: Con esta orden el brazo acercará el objeto al cirujano y esperará a nuevas órdenes. La palabra “objeto” deberá ser sustituida por el instrumento deseado.
     - GAAR-I abre: La pinza se abrirá y después de un segundo volverá a su posición inicial.
     - GAAR-I devuelve “objeto”: La pinza se cerrará y después de un segundo procederá a dejar el objeto en su posición inicial y volverá a su posición inicial.  La palabra “objeto” deberá ser sustituida por el instrumento deseado.
     - GAAR-I ven: Con esta orden el brazo se acercará al cirujano con la pinza abierta a la espera de nuevas órdenes.
-    
+
 El conjunto de objetos que va a ser capaz de reconocer serán los siguientes:
+
     - Pinzas
     - Bisturí
     - Jeringuilla
