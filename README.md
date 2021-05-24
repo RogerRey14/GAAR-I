@@ -20,6 +20,7 @@
       * [Brazos y conexiones del robot](#brazos-y-conexiones-del-robot)
       * [Instrumentos y objetos 3d](#instrumentos-y-objetos-3d)
    * [Simulación](#simulación)
+   * [Vídeo](#video)
    * [Contribuciones](#contribuciones)
    * [Autores](#autores)
 
@@ -270,6 +271,8 @@ La escena, estará ambientada en una sala de operaciones donde se realiza una op
 <p align="center">
 <img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/ejemplo_simulacion.gif" height="300" />
 </p>
+
+# Vídeo
 
 # Contribuciones
 
