@@ -174,7 +174,7 @@ GAAR-I tiene el objetivo de determinar la posición en la que se encuentra el ob
 A continuación se observan los cálculos realizados por el algoritmo para llevar a cabo la orden de traer la jeringuilla:
 
 ![Secuencia cinematica](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/sec_cinematica.PNG)
-
+zzzzz
 
 ## Planificación de secuencias de movimiento
 
