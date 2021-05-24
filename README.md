@@ -16,6 +16,9 @@
       * [Planificación de secuencias de movimiento](#planificación-de-secuencias-de-movimiento)
       * [Control de flujo](#control-de-flujo)
    * [Componentes y piezas 3d](#componentes-y-piezas-3d)
+      * [Estructura del robot](#estructura-del-robot)
+      * [Brazos y conexiones del robot](#brazos-y-conexiones-del-robot)
+      * [Instrumentos y objetos 3d](#instrumentos-y-objetos-3d)
    * [Simulación](#simulación)
    * [Contribuciones](#contribuciones)
    * [Autores](#autores)
@@ -118,8 +121,6 @@ La imágen representa el esquema hardware que tendríamos que haber realizado en
 
 # Arquitectura del software
 
-![Esquema del software](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/esquema_sw.PNG)
-
 Como se puede observar en la anterior imagen, GAAR-I está conformado por 5 módulos principales:
 - Módulo de reconocimiento de voz, que mediante los comandos que el usuario le dicta es capaz de realizar lo que este desea.
 - Módulo de detección de objetos el cual le permite detectar objetos y decidir por dónde y con qué orientación coger el instrumento.
@@ -127,6 +128,8 @@ Como se puede observar en la anterior imagen, GAAR-I está conformado por 5 mód
 - Módulo de la cinemática inversa, el cual se encarga de calcular los ángulos necesarios para llegar a la posición del instrumento y poderlo coger correctamente.
 - Módulo del control de flujo, encargado de coordinar todos los anteriores módulos para conseguir el objetivo del robot.
 La cámara, que se utiliza cuando GAAR-I debe detectar un objeto para dárselo al cirujano, el micrófono para escuchar lo que se le ordena y los servos que permiten el movimiento están conectados a la Raspberry Pi.
+
+![Esquema del software](https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/esquema_sw.PNG)
 
 
 # Módulos
@@ -247,7 +250,14 @@ GAAR-I es un brazo robot de 5 ejes, por tanto dispone de 5 servomotores para pod
 <img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/pinza_texto.png"  width="500" />
 </p>
 
-<br/>
+
+## Instrumentos y objetos 3d
+
+GAAR-I está contextualizado en el ámbito quirúrgico, por ello los objetos con los que interactúa también pertenecerán a ese mismo ámbito.
+
+<p align="center">
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/instrumentos_3d.PNG" height="400" />
+</p>
 
 # Simulación
 
