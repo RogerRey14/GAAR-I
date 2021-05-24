@@ -236,10 +236,14 @@ Esta parte es la encargada de:
 
 GAAR-I es un brazo robot de 5 ejes, por tanto dispone de 5 servomotores para poder llevar a cabo su función. Los componentes y las piezas que integran el robot son la la base, 3 brazos, manipulador, cámara, micrófono y 6 servomotores incluyendo el del manipulador. El servomotor de la base y del brazo conectado al manipulador tienen libertad de giro de 180º en el eje Z. El resto de ejes que dependiendo del sistema de coordenadas tienen libertad de giro de 180º en el eje X o Y.
 
+## Brazos y conexiones del robot
 <p align="center">
-<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/robot_perfiles.png" width="600" />
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/estructure_robot.png" width="400" />
+
+<img src="https://github.com/RogerRey14/GAAR-I/blob/main/Documentacion/Imagenes/pinza_texto.png"  width="300" />
 </p>
 
+<br/>
 
 # Simulación
 
