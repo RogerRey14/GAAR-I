@@ -3,9 +3,9 @@
 
 # Tabla de contenidos
    * [What is this?](#what-is-this)
-   * [Descripción](#descripcion)
+   * [Descripción](#descripción)
    * [Requerimientos](#requerimientos)
-   * [Esquema del hardware](#esquema-de-hardware)
+   * [Esquema del hardware](#esquema-del-hardware)
    * [Arquitectura del software](#arquitectura-del-software)
    * [Módulos](#modulos)
       * [Reconocimiento de voz](#reconocimiento-voz)
