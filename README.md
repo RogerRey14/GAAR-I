@@ -280,6 +280,10 @@ La escena, estará ambientada en una sala de operaciones donde se realiza una op
 </p>
 
 # Vídeo
+[![Simulación del robot GAAR-I](https://img.youtube.com/vi/0N3WjPye0yc/0.jpg)](https://www.youtube.com/watch?v=0N3WjPye0yc)
+<br/>
+Haz click sobre la imagen para ver el video en YouTube.
+
 
 # Contribuciones
 
