@@ -26,7 +26,7 @@
 
 # What is this?
 
-Somos un grupo de estudiantes de ingeniería informática que hemos cursado la asignatura de Robótica, Lenguage y Planificación y hemos creado este brazo robótico como proyecto de la asignatura.
+Somos un grupo de estudiantes de ingeniería informática que hemos cursado la asignatura de Robótica, Lenguaje y Planificación y hemos creado este brazo robótico como proyecto de la asignatura.
 
 A causa de la pandemia del COVID-19 no se ha podido realizar la construcción de la parte física y del hardware y por lo tanto esa parte ha tenido que ser simulada. Más adelante encontrareis una guía para que cualquiera pueda ejecutar el código y ver el funcionamiento de este.
 
